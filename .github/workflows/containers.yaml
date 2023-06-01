@@ -24,9 +24,8 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_REPOSITORY: ${{ secrets.DOCKER_USERNAME }}/k8s-dummy:dev
         run: |
-          echo "DOCKER_USERNAME: $DOCKER_USERNAME"
-          echo "DOCKER_PASSWORD: $DOCKER_PASSWORD"
-          echo "DOCKER_REPOSITORY: $DOCKER_REPOSITORY"
+          echo ${{ secrets.DOCKER_USERNAME }}
+          echo ${{ secrets.DOCKER_PASSWORD }}
           docker buildx build --push --platform linux/amd64,linux/arm64 --tag $DOCKER_REPOSITORY --file Dockerfile.dev .
 
       - name: Build and push Docker image for main branch
