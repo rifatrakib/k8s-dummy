@@ -22,7 +22,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_REPOSITORY: your-docker-username/your-docker-repo:dev
+          DOCKER_REPOSITORY: ${{ secrets.DOCKER_USERNAME }}/k8s-dummy:dev
         run: |
           docker buildx build --push --platform linux/amd64,linux/arm64 --tag $DOCKER_REPOSITORY --file Dockerfile.dev .
 
@@ -31,6 +31,6 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_REPOSITORY: your-docker-username/your-docker-repo:latest
+          DOCKER_REPOSITORY: ${{ secrets.DOCKER_USERNAME }}/k8s-dummy:latest
         run: |
           docker buildx build --push --platform linux/amd64,linux/arm64 --tag $DOCKER_REPOSITORY --file Dockerfile.main .
